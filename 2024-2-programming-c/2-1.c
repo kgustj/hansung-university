@@ -1,7 +1,6 @@
 #include <stdio.h>
 
-int main(void)
-{
+int main(void) {
     // 1
     printf("이름: 홍길동\n");
     printf("나이: 20살\n");
