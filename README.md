@@ -7,7 +7,7 @@
 | [`24-1-programming-c`](24-1-programming-c) | 24-1 | 컴퓨터프로그래밍 | C 실습 코드 |
 | [`26-2-webdev-js`](26-2-webdev-js) | 26-2 | 웹프로그래밍 | 주차별 HTML·CSS·JavaScript 실습 (DOM, 이벤트, 캔버스, 웹 스토리지, Map) |
 | [`26-2-bigdata-py`](26-2-bigdata-py) | 26-2 | 빅데이터기초 | Python 실습 노트북 1~4, pandas |
-| [`26-2-network-py`](26-2-network-py) | 26-2 | 데이터통신 | Python 소켓 TCP·UDP 클라이언트/서버 |
+| [`26-2-datacomm-py`](26-2-datacomm-py) | 26-2 | 데이터통신 | Python 소켓 TCP·UDP 클라이언트/서버 |
 
 ## 웹프로그래밍 폴더 구조
 
