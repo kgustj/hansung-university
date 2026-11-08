@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <h3 id="status">나의 단어장 만들기</h3>
+        <hr />
+        영단어: <input type="text" id="word" /> <br />
+        단어뜻: <input type="text" id="mean" />
+        <br />
+        <input type="button" value="단어 저장" onclick="createWord()" />
+        <input type="button" value="단어 검색" onclick="readWord()" />
+        <input type="button" value="단어 삭제" onclick="deleteWord()" />
+        <input type="button" value="전체 보기" onclick="readWordAll()" />
+        <script>
+            const word = document.querySelector("#word");
+            const mean = document.querySelector("#mean");
+
+            function resetInput() {
+                word.value = "";
+                mean.value = "";
+            }
+
+            function createWord() {
+                if (word.value.trim() == "" || mean.value.trim() == "") {
+                    alert("영단어와 뜻을 입력하세요.");
+                    return;
+                }
+                localStorage.setItem(word.value.trim(), mean.value.trim());
+                resetInput();
+            }
+            function readWord() {
+                const result = localStorage.getItem(word.value.trim());
+                if (result === null) {
+                    alert("없는 단어입니다.");
+                    mean.value = "";
+                } else {
+                    mean.value = result;
+                }
+            }
+
+            function deleteWord() {
+                localStorage.removeItem(word.value.trim());
+                resetInput();
+            }
+
+            function readWordAll() {
+                document.write("<h3>나의 단어장 모두 출력</h3><hr>");
+
+                const wordAll = Object.entries(localStorage);
+                for (let i = 0; i < wordAll.length; i++) {
+                    const [key, value] = wordAll[i];
+                    document.write(`${i + 1}. ${key}: ${value}<br>`);
+                }
+            }
+        </script>
+    </body>
+</html>

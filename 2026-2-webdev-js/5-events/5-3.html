@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+    <head>
+        <title>키 이벤트 (이미지) 응용</title>
+        <style>
+            td {
+                width: 50px;
+                height: 50px;
+                border: 1px solid orchid;
+            }
+        </style>
+    </head>
+    <body>
+        <h3>10x10 키로 이미지 이동하기</h3>
+        <hr />
+        <script>
+            let row = 10;
+            let col = 10;
+            document.write("<table>");
+            for (let i = 0; i < row; i++) {
+                document.write("<tr>");
+                for (let j = 0; j < col; j++) {
+                    document.write("<td></td>");
+                }
+                document.write("</tr>");
+            }
+            document.write("</table>");
+
+            let tds;
+            let prevIndex = 0;
+            let index = 0;
+
+            window.onload = function () {
+                const tds = document.getElementsByTagName("td");
+                const img = document.createElement("img");
+                img.setAttribute("src", "../tree.jpg");
+                img.width = 45;
+                img.height = 45;
+                tds[index].appendChild(img);
+
+                for (let i = 0; i < tds.length; i++) {
+                    tds[i].onclick = function () {
+                        index = Math.floor(Math.random() * 100);
+                        tds[index].appendChild(img);
+                    };
+                }
+            };
+
+            window.onkeydown = function (e) {
+                switch (e.key) {
+                    case "ArrowDown":
+                    case "s":
+                        if (index / 10 >= 9) return;
+                        index += 10;
+                        break;
+                    case "ArrowUp":
+                    case "w":
+                        if (index / 10 < 1) return;
+                        index -= 10;
+                        break;
+                    case "ArrowLeft":
+                    case "a":
+                        if (index % 10 == 0) return;
+                        index--;
+                        break;
+                    case "ArrowRight":
+                    case "d":
+                        if (index % 10 == 9) return;
+                        index++;
+                        break;
+                }
+                tds[index].appendChild(img);
+            };
+        </script>
+    </body>
+</html>

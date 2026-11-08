@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <h3>Map 객체 & 동적 객체 추가</h3>
+        <hr />
+        이름: <input type="text" id="name" /> <br />
+        나이: <input type="number" id="age" /> <br />
+        주소: <input type="text" id="addr" /> <br />
+        <input type="button" value="확인" onclick="addRow()" />
+        <input type="button" value="취소" onclick="resetInput()" />
+        <hr />
+        <table border="1" id="table">
+            <tr>
+                <th>이름</th>
+                <th>나이</th>
+                <th>주소</th>
+            </tr>
+        </table>
+        <script>
+            const table = document.querySelector("#table");
+            const name = document.querySelector("#name");
+            const age = document.querySelector("#age");
+            const addr = document.querySelector("#addr");
+
+            function addRow() {
+                const map = new Map();
+                map.set("이름", name.value);
+                map.set("나이", age.value);
+                map.set("주소", addr.value);
+
+                const tr = document.createElement("tr");
+                for (let [key, value] of map) {
+                    const td = document.createElement("td");
+                    td.innerHTML = value;
+                    tr.appendChild(td);
+                }
+                table.appendChild(tr);
+
+                resetInput();
+            }
+
+            function resetInput() {
+                name.value = "";
+                age.value = "";
+                addr.value = "";
+            }
+        </script>
+    </body>
+</html>

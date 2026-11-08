@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>식물 키우기</h1>
+        <div>
+            <button onclick="green.giveLight(15)">빛 공급</button> :
+            <span id="light">0</span>
+            &nbsp;&nbsp;
+            <button onclick="green.giveWater(10)">수분 공급</button> :
+            <span id="water">0</span>
+            &nbsp;&nbsp;
+            <button onclick="green.giveTemp(10)">온도</button> :
+            <span id="temp">0</span>
+            &nbsp;&nbsp;
+            <button onclick="green.giveNut(10)">영양분</button> :
+            <span id="nut">0</span>
+        </div>
+        <h3>성장 크기 : <span id="growth">0</span></h3>
+        <img src="../tree.jpg" width="100" id="treeImg" />
+        <script src="./3-2.js"></script>
+    </body>
+</html>

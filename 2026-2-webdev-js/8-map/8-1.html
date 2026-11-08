@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <h1 class="hTag">나는 h1 태그입니다.</h1>
+        <h2 class="hTag">나는 h2 태그입니다.</h2>
+        <h3 class="hTag">나는 h3 태그입니다.</h3>
+        <h4 class="hTag">나는 h4 태그입니다.</h4>
+        <h5 class="hTag">나는 h5 태그입니다.</h5>
+        <h6 class="hTag">나는 h6 태그입니다.</h6>
+        <hr />
+        <script>
+            let h = document.getElementsByClassName("hTag");
+            let array = Array.from(h);
+
+            document.write("<p>*** hw1-1. for-in Loop 객체 ***</p>");
+            for (let i in array) {
+                document.write("<" + array[i].tagName + ">");
+                document.write(array[i].innerHTML);
+                document.write("</" + array[i].tagName + ">");
+            }
+
+            document.write("<p>*** hw1-2. for-of Loop 배열 ***</p>");
+            for (let tag of array) {
+                document.write("<" + tag.tagName + ">");
+                document.write(tag.innerHTML);
+                document.write("</" + tag.tagName + ">");
+            }
+
+            document.write("<p>*** hw1-3. forEach Loop 배열 ***</p>");
+            array.forEach((tag) => {
+                document.write("<" + tag.tagName + ">");
+                document.write(tag.innerHTML);
+                document.write("</" + tag.tagName + ">");
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,8 @@
+# 과제 제출용 PDF (학번·이름 포함)
+pdf/
+
+# macOS
+.DS_Store
+
+# Python
+__pycache__/

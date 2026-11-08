@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <h3>사칙연산</h3>
+        <input type="number" id="num1" />
+        <input type="number" id="num2" />
+        <input type="button" value="Result" onclick="result()" />
+        <hr />
+        add: <span id="add"></span><br />
+        sub: <span id="sub"></span><br />
+        mul: <span id="mul"></span><br />
+        div: <span id="div"></span><br />
+        <script>
+            const num1 = document.querySelector("#num1");
+            const num2 = document.querySelector("#num2");
+
+            const worker = new Worker("calculation.js");
+
+            function result() {
+                if (num1.value == "" || num2.value == "") {
+                    alert("숫자를 입력하세요.");
+                    return;
+                }
+                worker.postMessage({
+                    a: Number(num1.value),
+                    b: Number(num2.value),
+                });
+            }
+
+            worker.onmessage = function (e) {
+                document.querySelector("#add").innerHTML = e.data.add;
+                document.querySelector("#sub").innerHTML = e.data.sub;
+                document.querySelector("#mul").innerHTML = e.data.mul;
+                document.querySelector("#div").innerHTML = e.data.div;
+            };
+        </script>
+    </body>
+</html>

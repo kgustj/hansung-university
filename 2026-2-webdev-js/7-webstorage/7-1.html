@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <h3 id="status">로그아웃 상태</h3>
+        <hr />
+        아이디: <input type="text" id="userId" /> <br />
+        비밀번호: <input type="password" id="userPw" />
+        <br />
+        <input type="button" value="로그인" onclick="login()" />
+        <input type="button" value="로그아웃" onclick="logout()" />
+        <br />
+        <input type="button" value="테마 dark 변경" onclick="themeDark()" />
+        <input type="button" value="테마 white 변경" onclick="themeLight()" />
+        <script>
+            function setCookie(name, value) {
+                let cookie = encodeURIComponent(name) + "=" + encodeURIComponent(value) + "; path=/";
+                document.cookie = cookie;
+            }
+
+            function getCookie(name) {
+                const cookies = document.cookie.split("; ");
+                for (let i = 0; i < cookies.length; i++) {
+                    const [key, value] = cookies[i].split("=");
+                    if (decodeURIComponent(key) === name) {
+                        return decodeURIComponent(value);
+                    }
+                }
+            }
+
+            function delCookie(name) {
+                document.cookie = encodeURIComponent(name) + "=; path=/; max-age=0";
+            }
+
+            function login() {
+                const id = document.querySelector("#userId").value.trim();
+                const pw = document.querySelector("#userPw").value.trim();
+
+                if (id == "" || pw == "") {
+                    alert("아이디와 비밀번호를 입력하세요.");
+                    return;
+                }
+
+                setCookie("id", id);
+                setCookie("pw", pw);
+                showStatus();
+            }
+
+            function logout() {
+                delCookie("id");
+                delCookie("pw");
+
+                document.querySelector("#userId").value = "";
+                document.querySelector("#userPw").value = "";
+                showStatus();
+            }
+
+            function showStatus() {
+                const status = document.querySelector("#status");
+
+                if (getCookie("id")) {
+                    status.innerHTML = "로그인 상태: " + getCookie("id");
+                    document.querySelector("#userId").value = getCookie("id");
+                    document.querySelector("#userPw").value = getCookie("pw");
+                } else {
+                    status.innerHTML = "로그아웃 상태";
+                }
+            }
+            showStatus();
+
+            function themeDark() {
+                setCookie("theme", "dark");
+                setTheme();
+            }
+
+            function themeLight() {
+                setCookie("theme", "light");
+                setTheme();
+            }
+
+            function setTheme() {
+                if (getCookie("theme") == "dark") {
+                    document.body.style.backgroundColor = "black";
+                    document.body.style.color = "white";
+                } else {
+                    document.body.style.backgroundColor = "white";
+                    document.body.style.color = "black";
+                }
+            }
+            setTheme();
+        </script>
+    </body>
+</html>
