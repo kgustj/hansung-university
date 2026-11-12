@@ -8,5 +8,5 @@ app.listen(app.get("port"), () => {
 
 app.get("/", (req, res) => {
     console.log("루트 요청");
-    res.sendFile(__dirname + "./index.html");
+    res.sendFile(__dirname + "/index.html");
 });
