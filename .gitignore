@@ -1,4 +1,21 @@
+# macOS
 .DS_Store
+._.DS_Store
+
+# Python / Jupyter
 __pycache__/
 .ipynb_checkpoints/
+
+# Node
 node_modules/
+
+# 24-1-programming-c: 확장자 없는 파일(컴파일된 실행 파일) 무시
+24-1-programming-c/**
+!24-1-programming-c/**/
+!24-1-programming-c/**/*.*
+
+# 26-2-bigdata-py: 실습 데이터 CSV
+26-2-bigdata-py/*.csv
+
+# 26-2-webdev-js: 과제 제출용 PDF (학번·이름 포함)
+26-2-webdev-js/pdf/
