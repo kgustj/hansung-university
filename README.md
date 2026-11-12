@@ -21,10 +21,11 @@
 ├─ 5-events/         마우스 휠, 키보드 이벤트
 ├─ 6-canvas/         캔버스 그리기, 타이머
 ├─ 7-webstorage/     쿠키, localStorage, Web Worker
-└─ 8-map/            DOM 탐색, Map 객체
+├─ 9-map/            DOM 탐색, Map 객체
+└─ 10-server/        Node.js 서버 (http, Express)
 ```
 
-HTML 파일을 브라우저로 열면 바로 확인할 수 있습니다. 과제 제출용 PDF(`26-2-webdev-js/pdf/`)는 올리지 않습니다.
+HTML 파일을 브라우저로 열면 바로 확인할 수 있습니다. `10-server`는 `npm install` 후 `node server.js`로 실행합니다. 과제 제출용 PDF(`26-2-webdev-js/pdf/`)는 올리지 않습니다.
 
 ## 원래 저장소
 
