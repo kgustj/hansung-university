@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <title>회원정보 입력</title>
+    </head>
+    <body>
+        <h3>회원정보 입력</h3>
+        <!-- 실습 1-1: GET - query -->
+        <form action="/users" method="get">
+            <p>1-1 GET - query</p>
+            <hr />
+            <label>이름 : <input type="text" name="name" required /></label><br />
+            <label>나이 : <input type="number" name="age" required /></label>
+            <div>
+                <input type="submit" value="저장" />
+                <input type="reset" value="취소" />
+            </div>
+        </form>
+
+        <!-- 실습 1-2: GET - parameter -->
+        <form id="getParam" method="get">
+            <p>1-2 GET - parameter</p>
+            <hr />
+            <label>이름 : <input type="text" name="name" required /></label><br />
+            <label>나이 : <input type="number" name="age" required /></label>
+            <div>
+                <input type="submit" value="저장" />
+                <input type="reset" value="취소" />
+            </div>
+        </form>
+
+        <!-- 실습 1-3: POST - body -->
+        <form action="/users" method="post">
+            <p>1-3 POST - body</p>
+            <hr />
+            <label>이름 : <input type="text" name="name" required /></label><br />
+            <label>나이 : <input type="number" name="age" required /></label>
+            <div>
+                <input type="submit" value="저장" />
+                <input type="reset" value="취소" />
+            </div>
+        </form>
+
+        <!-- 실습 1-4: POST - parameter -->
+        <form id="postParam" method="post">
+            <p>1-4 POST - parameter</p>
+            <hr />
+            <label>이름 : <input type="text" name="name" required /></label><br />
+            <label>나이 : <input type="number" name="age" required /></label>
+            <div>
+                <input type="submit" value="저장" />
+                <input type="reset" value="취소" />
+            </div>
+        </form>
+
+        <script>
+            // 폼은 입력값을 경로(/users/이름/나이)에 자동으로 넣지 못하므로 JS로 주소를 만든다
+            function paramUrl(form) {
+                const data = new FormData(form);
+                const name = encodeURIComponent(data.get("name"));
+                const age = encodeURIComponent(data.get("age"));
+                return `/users/${name}/${age}`;
+            }
+
+            // 1-2 : GET이면 폼 값이 ?name=... 으로 또 붙으므로 직접 주소 이동
+            document.getElementById("getParam").addEventListener("submit", (e) => {
+                e.preventDefault();
+                location.href = paramUrl(e.target);
+            });
+
+            // 1-4 : action만 바꾸고 원래대로 POST 전송
+            document.getElementById("postParam").addEventListener("submit", (e) => {
+                e.target.action = paramUrl(e.target);
+            });
+        </script>
+    </body>
+</html>

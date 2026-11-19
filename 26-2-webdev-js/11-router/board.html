@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <title>게시판</title>
+    </head>
+    <body>
+        <h3>게시판</h3>
+        <!-- 실습 2-1: GET - query -->
+        <form action="/board" method="get">
+            <p>2-1 GET - query</p>
+            <table>
+                <tr>
+                    <th>제목</th>
+                    <td><input type="text" name="title" placeholder="제목을 입력하세요" required /></td>
+                </tr>
+                <tr>
+                    <th>내용</th>
+                    <td><textarea name="content" placeholder="내용을 입력하세요" required></textarea></td>
+                </tr>
+                <tr>
+                    <th>날짜</th>
+                    <td><input type="date" name="date" required /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="저장" />
+                        <input type="reset" value="취소" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        <!-- 실습 2-2: GET - parameter -->
+        <form id="getParam" method="get">
+            <p>2-2 GET - parameter</p>
+            <table>
+                <tr>
+                    <th>제목</th>
+                    <td><input type="text" name="title" placeholder="제목을 입력하세요" required /></td>
+                </tr>
+                <tr>
+                    <th>내용</th>
+                    <td><textarea name="content" placeholder="내용을 입력하세요" required></textarea></td>
+                </tr>
+                <tr>
+                    <th>날짜</th>
+                    <td><input type="date" name="date" required /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="저장" />
+                        <input type="reset" value="취소" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        <!-- 실습 2-3: POST - body -->
+        <form action="/board" method="post">
+            <p>2-3 POST - body</p>
+            <table>
+                <tr>
+                    <th>제목</th>
+                    <td><input type="text" name="title" placeholder="제목을 입력하세요" required /></td>
+                </tr>
+                <tr>
+                    <th>내용</th>
+                    <td><textarea name="content" placeholder="내용을 입력하세요" required></textarea></td>
+                </tr>
+                <tr>
+                    <th>날짜</th>
+                    <td><input type="date" name="date" required /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="저장" />
+                        <input type="reset" value="취소" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        <!-- 실습 2-4: POST - parameter -->
+        <form id="postParam" method="post">
+            <p>2-4 POST - parameter</p>
+            <table>
+                <tr>
+                    <th>제목</th>
+                    <td><input type="text" name="title" placeholder="제목을 입력하세요" required /></td>
+                </tr>
+                <tr>
+                    <th>내용</th>
+                    <td><textarea name="content" placeholder="내용을 입력하세요" required></textarea></td>
+                </tr>
+                <tr>
+                    <th>날짜</th>
+                    <td><input type="date" name="date" required /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="저장" />
+                        <input type="reset" value="취소" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        <script>
+            // 입력값을 경로(/board/제목/내용/날짜)에 넣어 주소를 만든다
+            // encodeURIComponent: 내용에 / 나 줄바꿈이 있어도 경로가 깨지지 않게 변환
+            function paramUrl(form) {
+                const data = new FormData(form);
+                const title = encodeURIComponent(data.get("title"));
+                const content = encodeURIComponent(data.get("content"));
+                const date = encodeURIComponent(data.get("date"));
+                return `/board/${title}/${content}/${date}`;
+            }
+
+            // 2-2 : GET이면 폼 값이 ?title=... 으로 또 붙으므로 직접 주소 이동
+            document.getElementById("getParam").addEventListener("submit", (e) => {
+                e.preventDefault();
+                location.href = paramUrl(e.target);
+            });
+
+            // 2-4 : action만 바꾸고 원래대로 POST 전송
+            document.getElementById("postParam").addEventListener("submit", (e) => {
+                e.target.action = paramUrl(e.target);
+            });
+        </script>
+    </body>
+</html>
