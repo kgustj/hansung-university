@@ -19,3 +19,7 @@ node_modules/
 
 # 26-2-webdev-js: 과제 제출용 PDF (학번·이름 포함)
 26-2-webdev-js/pdf/
+
+# 26-2-oop-java: Eclipse 빌드 결과물, 교수님 배포 실행 파일(.class)
+26-2-oop-java/bin/
+26-2-oop-java/data/*.class
