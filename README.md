@@ -8,6 +8,7 @@
 | [`26-2-webdev-js`](26-2-webdev-js) | 26-2 | 웹프로그래밍 | 주차별 HTML·CSS·JavaScript 실습 (DOM, 이벤트, 캔버스, 웹 스토리지, Map) |
 | [`26-2-bigdata-py`](26-2-bigdata-py) | 26-2 | 빅데이터기초 | Python 실습 노트북 1~4, pandas |
 | [`26-2-datacomm-py`](26-2-datacomm-py) | 26-2 | 데이터통신 | Python 소켓 TCP·UDP 클라이언트/서버 |
+| [`26-2-oop-java`](26-2-oop-java) | 26-2 | 객체지향언어 | Java 실습 (명품자바 3~12장 예제, 과제) |
 
 ## 웹프로그래밍 폴더 구조
 
@@ -27,6 +28,28 @@
 ```
 
 HTML 파일을 브라우저로 열면 바로 확인할 수 있습니다. `10-server`와 `11-router`는 해당 폴더에서 `npm install` 후 `node server.js`, `node user.js`(또는 `node board.js`)로 실행합니다. 과제 제출용 PDF(`26-2-webdev-js/pdf/`)는 올리지 않습니다.
+
+## 객체지향언어 폴더 구조
+
+```
+26-2-oop-java/
+├─ src/
+│  ├─ ch03_looparray/    반복문, 배열, 예외 처리
+│  ├─ ch04_class/        클래스와 객체, static
+│  ├─ ch05_inheritance/  상속
+│  ├─ ch06_package/      Math, StringBuffer, StringTokenizer
+│  ├─ ch07_collection/   컬렉션, 제네릭
+│  ├─ ch08_io/           파일 입출력
+│  ├─ ch09_gui/          스윙 프레임, 배치관리자
+│  ├─ ch10_event/        마우스·키 이벤트
+│  ├─ ch11_component/    스윙 컴포넌트
+│  ├─ ch12_graphics/     그래픽
+│  └─ report/            과제 (Report6: 공학용 계산기, Hangman 등)
+├─ data/                 ch08 예제가 읽고 쓰는 파일
+└─ images/               ch11 예제 이미지
+```
+
+Eclipse에서 File → Import → Existing Projects into Workspace로 이 폴더를 불러온 뒤, 파일을 우클릭해 Run As → Java Application으로 실행합니다. 예제가 `data/`, `images/`를 상대경로로 읽기 때문에 프로젝트 폴더에서 실행해야 합니다. 빌드 결과물(`bin/`)과 교수님 배포 실행 파일(`data/*.class`)은 올리지 않습니다.
 
 ## 원래 저장소
 
