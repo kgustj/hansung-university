@@ -23,3 +23,6 @@ node_modules/
 # 26-2-oop-java: Eclipse 빌드 결과물, 교수님 배포 실행 파일(.class)
 26-2-oop-java/bin/
 26-2-oop-java/data/*.class
+
+# Eclipse 작업 공간 설정 (이 폴더를 Eclipse workspace로 사용)
+.metadata/
