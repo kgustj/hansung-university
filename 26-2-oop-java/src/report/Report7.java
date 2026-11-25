@@ -83,16 +83,11 @@ public class Report7 extends JFrame {
 	}
 
 	public Report7() {
-		setTitle("행맨 이미지 삭제");
+		setTitle("Report7");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(480, 280);
+		setSize(420, 260);
 
-		init(); // 버튼, 글자, 그림 패널 구성
-		setVisible(true); // 화면을 다 만든 뒤 마지막에 창을 띄움
-	}
-
-	private void init() {
-		// 삭제 버튼 리스너 (버튼마다 전용 리스너를 익명 클래스로 붙여서 어느 버튼인지 구분할 필요 없음)
+		// 삭제 버튼 리스너
 		deleteButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -112,13 +107,13 @@ public class Report7 extends JFrame {
 		drawingPanel.setLayout(null); // 배치관리자 없이 위치를 직접 정함
 		drawingPanel.setBackground(Color.white);
 
-		int blockLeft = FIGURE_RIGHT + GAP; // 묶음 왼쪽 = 그림 오른쪽 + 간격
-		int blockTop = FIGURE_TOP + (FIGURE_HEIGHT - BLOCK_HEIGHT) / 2; // 그림 높이의 가운데에 오도록
-		int buttonTop = blockTop + LABEL_HEIGHT + ROW_GAP; // 버튼 줄 위쪽 = 글자 아래 + 간격
+		int blockLeft = FIGURE_RIGHT + GAP;
+		int blockTop = FIGURE_TOP + (FIGURE_HEIGHT - BLOCK_HEIGHT) / 2;
+		int buttonTop = blockTop + LABEL_HEIGHT + ROW_GAP;
 
 		countLabel.setFont(new Font("Arial", Font.BOLD, 24));
 		countLabel.setForeground(Color.RED);
-		countLabel.setHorizontalAlignment(SwingConstants.CENTER); // 버튼 묶음 폭 안에서 가운데 정렬
+		countLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		countLabel.setBounds(blockLeft, blockTop, BLOCK_WIDTH, LABEL_HEIGHT);
 
 		deleteButton.setBackground(Color.orange);
@@ -132,11 +127,13 @@ public class Report7 extends JFrame {
 		Container contentPane = getContentPane();
 		contentPane.add(drawingPanel);
 
-		updateDisplay(); // 처음 화면 표시
+		updateDisplay();
+
+		setVisible(true);
 	}
 
 	private void deleteLine() {
-		if (lineCount > 0) { // 지울 직선이 남아 있을 때만
+		if (lineCount > 0) {
 			lineCount--;
 		}
 
@@ -147,7 +144,7 @@ public class Report7 extends JFrame {
 	private void updateDisplay() {
 		countLabel.setText(lineCount + " lines left");
 
-		if (lineCount <= 0) { // 직선이 다 사라지고 원만 남으면 더 이상 누를 수 없게
+		if (lineCount <= 0) {
 			deleteButton.setEnabled(false);
 		} else {
 			deleteButton.setEnabled(true);
