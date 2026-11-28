@@ -1,58 +1,62 @@
-// MySQL + Node.js 접속 코드
-let mysql = require("mysql2");
-let db_info = {
-    host: "localhost", // DB 주소
-    port: "3306", // DB 포트
-    user: "root", // 로그인 계정
-    password: "1234", // DB 비밀번호
-    database: " mydb", // 사용할 DB명
-};
-// root(/) 에 출력
-app.get("/", (req, res) => {
-    res.sendFile(__dirname + "/index.html");
-});
-
-let conn = mysql.createConnection(db_info);
-conn.connect();
-
 const express = require("express");
+const bodyParser = require("body-parser");
+const mysql = require("mysql2");
+const path = require("path");
+
 const app = express();
 const port = 8000;
 
-// body-parser 미들웨어(form 전송 데이터 가져오기)
-const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
-app.listen(port, () => {
-    console.log(` ${port} 번 포트에서 대기중...`);
+
+// DB 연결
+const conn = mysql.createConnection({
+    host: "localhost",
+    port: 3306,
+    user: "root",
+    password: "1150",
+    database: "mydb",
+    dateStrings: true,
 });
-// root(/) 에 출력
+
+conn.connect((err) => {
+    if (err) {
+        console.log("❌ DB 연결 실패: " + err.message);
+        return;
+    }
+    console.log("✅ DB 연결 성공");
+});
+
+app.listen(port, () => {
+    console.log(`✅ ${port}번 포트에서 대기중...`);
+});
+
 app.get("/", (req, res) => {
-    res.sendFile(__dirname + "/index.html");
+    return res.sendFile(path.join(__dirname, "index.html"));
 });
 
 app.post("/iBoard", (req, res) => {
     const { title, content, date } = req.body;
-    let insertSql = `INSERT INTO board VALUES(null, '`;
-    insertSql += title + `', '` + content + `', '` + date + `');`;
-    conn.query(insertSql, (err, result) => {
-        if (err) console.log("query is not excuted: " + err);
-        else {
-            let msg = `<script type="text/javascript">`;
-            msg += `alert(" 저장되었습니다");`;
-            msg += `window.location.href='/list';`;
-            msg += `</script>`;
-            res.send(msg);
+    const sql = "INSERT INTO board (title, content, date) VALUES (?, ?, ?)";
+    conn.query(sql, [title, content, date], (err, result) => {
+        if (err) {
+            console.log("❌ 쿼리 오류: " + err.message);
+            return res.status(500).json({ error: "❌ 저장 실패" });
         }
+        return res.send(`
+            <script>
+                alert("✅ 저장되었습니다");
+                location.href="/list";
+            </script>
+        `);
     });
 });
 
 app.get("/list", (req, res) => {
-    let sql = "SELECT * FROM board ORDER BY board_no DESC;";
-    conn.query(sql, (err, result) => {
-        if (err) console.log("query is not excuted: " + err);
-        else {
-            res.send(result);
-            res.end();
+    conn.query("SELECT * FROM board ORDER BY board_no DESC", (err, result) => {
+        if (err) {
+            console.log("❌ 쿼리 오류: " + err.message);
+            return res.status(500).json({ error: "❌ 조회 실패" });
         }
+        return res.json(result);
     });
 });
