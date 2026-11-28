@@ -24,10 +24,11 @@
 ├─ 7-webstorage/     쿠키, localStorage, Web Worker
 ├─ 9-map/            DOM 탐색, Map 객체
 ├─ 10-server/        Node.js 서버 (http, Express)
-└─ 11-router/        Express 라우팅 (query, params, body)
+├─ 11-router/        Express 라우팅 (query, params, body)
+└─ 12-database/      Express + MySQL 게시판 (저장, 목록)
 ```
 
-HTML 파일을 브라우저로 열면 바로 확인할 수 있습니다. `10-server`와 `11-router`는 해당 폴더에서 `npm install` 후 `node server.js`, `node user.js`(또는 `node board.js`)로 실행합니다. 과제 제출용 PDF(`26-2-webdev-js/pdf/`)는 올리지 않습니다.
+HTML 파일을 브라우저로 열면 바로 확인할 수 있습니다. `10-server`, `11-router`, `12-database`는 해당 폴더에서 `npm install` 후 `node server.js`, `node user.js`(또는 `node board.js`), `node app.js`로 실행합니다. `12-database`는 MySQL에 `mydb` 데이터베이스와 `board` 테이블이 있어야 합니다. 과제 제출용 PDF(`26-2-webdev-js/pdf/`)는 올리지 않습니다.
 
 ## 객체지향언어 폴더 구조
 
