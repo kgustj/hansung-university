@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <title>회원정보 입력</title>
+    </head>
+    <body>
+        <h3>회원정보 입력</h3>
+        <form action="/user" method="post">
+            <table>
+                <tr>
+                    <th>이름</th>
+                    <td><input type="text" name="name" placeholder="이름을 입력하세요" required /></td>
+                </tr>
+                <tr>
+                    <th>나이</th>
+                    <td><input type="number" name="age" placeholder="나이를 입력하세요" required /></td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td>
+                        <input type="submit" value="저장" />
+                        <input type="reset" value="취소" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <a href="/list">회원 목록 보기</a>
+    </body>
+</html>

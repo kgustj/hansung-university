@@ -14,8 +14,7 @@ const conn = mysql.createConnection({
     port: 3306,
     user: "root",
     password: "1150",
-    database: "mydb",
-    dateStrings: true,
+    database: "webdev",
 });
 
 conn.connect((err) => {
@@ -31,13 +30,13 @@ app.listen(port, () => {
 });
 
 app.get("/", (req, res) => {
-    return res.sendFile(path.join(__dirname, "index.html"));
+    return res.sendFile(path.join(__dirname, "user.html"));
 });
 
-app.post("/iBoard", (req, res) => {
-    const { title, content, date } = req.body;
-    const sql = "INSERT INTO board (title, content, date) VALUES (?, ?, ?)";
-    conn.query(sql, [title, content, date], (err, result) => {
+app.post("/user", (req, res) => {
+    const { name, age } = req.body;
+    const sql = "INSERT INTO user (name, age) VALUES (?, ?)";
+    conn.query(sql, [name, age], (err, result) => {
         if (err) {
             console.log("❌ 쿼리 오류: " + err.message);
             return res.status(500).json({ error: "❌ 저장 실패" });
@@ -52,7 +51,7 @@ app.post("/iBoard", (req, res) => {
 });
 
 app.get("/list", (req, res) => {
-    conn.query("SELECT * FROM board ORDER BY board_no DESC", (err, result) => {
+    conn.query("SELECT * FROM user ORDER BY user_no DESC", (err, result) => {
         if (err) {
             console.log("❌ 쿼리 오류: " + err.message);
             return res.status(500).json({ error: "❌ 조회 실패" });
